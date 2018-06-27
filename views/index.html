@@ -30,27 +30,36 @@
   
   <section class="col-centered">
   <div class="row">
-   <div class="col-md-5 col-md-offset-1">
+     <label class="col-md-2 col-md-offset-2 control-label">From:</label>
+   <div class="col-md-3">
+     <div class="input-group">
+  <span class="input-group-addon" id="fromSymbol"></span>
       <input id="fromAmount" type="text" class="form-control" onkeyup="convertCurrency();" value="1">
     </div>
-        <div class="col-sm-5">
+    </div>
+        <div class="col-sm-4">
         <select class="form-control currency" id="from" onchange="convertCurrency();">
            <option value="USD">US Dollar(USD)</option>
            <option value="NGN">Nigerian Naira(NGN)</option>
         </select>  
         </div>
-</div>         
+</div> <br>    
   <div class="row">
-   <div class="col-md-5 col-md-offset-1">
-      <input id="toAmount" type="text" class="form-control" aria-label="...">
+     <label class="col-md-2 col-md-offset-2 control-label">To:</label>
+   <div class="col-md-3">
+     <div class="input-group">
+  <span class="input-group-addon" id="toSymbol"></span>
+      <input id="toAmount" type="text" class="form-control" aria-label="..." disabled>
     </div>
-        <div class="col-sm-5">
+    </div>
+        <div class="col-sm-4">
         <select class="form-control currency" id="to" onchange="convertCurrency();">
           <option value="NGN">Nigerian Naira(NGN)</option>
           <option value="USD">US Dollar(USD)</option>
         </select>             
         </div>
-</div>         
+</div>    
+    
     </section>
      </div>
   <footer class="row">

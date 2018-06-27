@@ -84,6 +84,15 @@ function convertCurrency() {
                  //     delete result[props];
                  // }  
               let html = `<option value="${props}">${result[props]["currencyName"]}(${props})</option>`;
+            
+              if(fromCurrency === props) {
+                
+                $("#fromSymbol").html(result[props]["currencySymbol"]);
+               
+                  } else if(toCurrency === props) {
+                    
+                       $("#toSymbol").html(result[props]["currencySymbol"]);
+                  }
               
                  $(".currency").append(html);
                 } 
@@ -105,6 +114,7 @@ function convertCurrency() {
               let total = val * fromAmount;
               let toAmount = Math.round(total * 100) / 100;
                  $('#toAmount').val(toAmount);
+                    
               } else {
                 var err = new Error("Value not found for " + query);
               
