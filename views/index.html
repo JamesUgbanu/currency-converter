@@ -23,21 +23,21 @@
   </head>
     <body onload="convertCurrency();">
 <div class="container-fluid">
-  <div class="box">
+  <div class="col-md-6 col-md-offset-3 box">
   <header class="row">
-    <h1 class="col-xs-12 text-center">Currency Converter</h1>
+    <h1 class="col-xs-12 text-center">CURRENCY CONVERTER</h1>
   </header>
   
   <section class="col-centered">
   <div class="row">
-     <label class="col-md-2 col-md-offset-2 control-label">From:</label>
-   <div class="col-md-3">
+     <label class="col-md-2 col-sm-2 col-md-offset-1 control-label">From:</label>
+   <div class="col-md-3 col-sm-3">
      <div class="input-group">
   <span class="input-group-addon" id="fromSymbol"></span>
       <input id="fromAmount" type="text" class="form-control" onkeyup="convertCurrency();" value="1">
     </div>
     </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-sm-4">
         <select class="form-control currency" id="from" onchange="convertCurrency();">
            <option value="USD">US Dollar(USD)</option>
            <option value="NGN">Nigerian Naira(NGN)</option>
@@ -45,7 +45,7 @@
         </div>
 </div> <br>    
   <div class="row">
-     <label class="col-md-2 col-md-offset-2 control-label">To:</label>
+     <label class="col-md-2 col-md-offset-1 control-label">To:</label>
    <div class="col-md-3">
      <div class="input-group">
   <span class="input-group-addon" id="toSymbol"></span>
