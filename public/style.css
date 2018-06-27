@@ -1,0 +1,12 @@
+.box {
+  border: 2px solid red;
+  margin: 20px 25%;
+}
+
+.col-centered{
+  float: none;
+  margin: 2em auto;
+}
+footer {
+  margin-top: 50px;
+}
