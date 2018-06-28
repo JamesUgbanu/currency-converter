@@ -10,7 +10,7 @@ var app = express();
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
-
+app.use(express.static('node_modules/idb/lib'));
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
@@ -19,9 +19,7 @@ app.get("/", function (request, response) {
 app.get("/sw.js", function (request, response) {
   response.sendFile(__dirname + '/sw.js');
 });
-app.get("/idb-test", function (request, response) {
-  response.sendFile(__dirname + '/js/idb-test/index.js');
-});
+
 
 
 // listen for requests :)

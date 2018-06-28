@@ -1,4 +1,4 @@
-var staticCacheName = 'curren-static-v5';
+var staticCacheName = 'curren-static-v3';
 var contentImgsCache = 'curren-content-imgs';
 var allCaches = [
   staticCacheName,

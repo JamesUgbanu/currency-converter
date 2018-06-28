@@ -1,3 +1,65 @@
+//import idb from 'idb';
+//var idb = require('idb');
+
+//  var dbPromise = idb.open('keyval-store', 1, upgradeDB => {
+//      var keyValStore = upgradeDB.createObjectStore('keyval');
+//       keyValStore.put("world", "hello");
+// });
+
+var dbPromise = idb.open('test-db', 3, function(upgradeDb) {
+  switch(upgradeDb.oldVersion) {
+    case 0:
+      upgradeDb.createObjectStore('currencies', { keyPath: 'id' });
+      //keyValStore.put("world", "hello");
+    case 1:
+      var currencyStore = upgradeDb.transaction.objectStore('currencies');
+      currencyStore.createIndex('currency', 'currencyName');
+    case 2:
+      var currencyStore = upgradeDb.transaction.objectStore('currencies');
+     currencyStore.createIndex('currencySymbol', 'currencySymbol');
+    
+  }
+});
+
+dbPromise.then(function(db) {
+  var tx = db.transaction('currencies', 'readwrite');
+  var currencyStore = tx.objectStore('currencies');
+
+  currencyStore.put({
+    id: 'XCD',
+    currencyName: 'East Caribbean Dollar',
+    currencySymbol:  "$"
+  });
+
+  currencyStore.put({
+    id: 'ALL',
+    currencyName: 'Albanian Lek',
+    currencySymbol:  "Lek"
+  });
+
+  currencyStore.put({
+     id: 'Euro',
+    country: 'EURO',
+    currencySymbol:  "€"
+  });
+
+  return tx.complete;
+}).then(function() {
+  console.log('Currencies added');
+});
+
+dbPromise.then(function(db) {
+  var tx = db.transaction('currencies');
+  var currencyStore = tx.objectStore('currencies');
+  var currencyIndex = currencyStore.index('currencySymbol');
+
+  return currencyIndex.getAll();
+}).then(function(currency) {
+  console.log('Currency by symbol:', currency);
+});
+
+
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/sw.js')
@@ -76,13 +138,18 @@ function convertCurrency() {
       $.ajax({
               url: currenciesUrl,
               type:"GET",
-              success: (result) => {
-                result = result.results;
+              success: (results) => {
+                result = results.results;
+                // let sorted = result.sort(function (a, b) {
+                //       return a["currencyName"] - b["currencyName"];
+                //     });
+                //console.log(results);
                for (const props in result) {
-                  console.log(props);
-                 //  if(props === "USD") {
-                 //     delete result[props];
-                 // }  
+                
+                 // let sorted = result.sort(function (a, b) {
+                 //      return a[props]["currencyName"] - b[props]["currencyName"];
+                 //    });
+                 
               let html = `<option value="${props}">${result[props]["currencyName"]}(${props})</option>`;
             
               if(fromCurrency === props) {
@@ -95,7 +162,8 @@ function convertCurrency() {
                   }
               
                  $(".currency").append(html);
-                } 
+                }
+                
               },
               error: (xhr,status,error) => {console.log(status)}, 
               dataType: 'jsonp',
